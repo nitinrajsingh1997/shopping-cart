@@ -7,12 +7,12 @@ var hbs = require('express-handlebars');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-
+var CONNECTION_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/shopping';
 var indexRouter = require('./routes/index');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/shopping');
+mongoose.connect(CONNECTION_URI);
 
 // view engine setup
 app.engine('.hbs', hbs({defaultLayout: 'layout', extname: '.hbs'}));
